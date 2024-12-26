@@ -1,19 +1,16 @@
 require 'webrick'
 
-# srcディレクトリへの絶対パスを取得
-SRC_DIR = File.join(Dir.pwd, 'src')
-
 server = WEBrick::HTTPServer.new(
   Port: 3000,
-  DocumentRoot: SRC_DIR,
+  DocumentRoot: File.join(Dir.pwd, 'src'),
   BindAddress: '0.0.0.0'
 )
 
-puts "サーバーを起動しました！"
-puts "ドキュメントルート: #{SRC_DIR}"
-puts "http://localhost:3000 にアクセスしてね！"
+puts "🚀 開発サーバーを起動します..."
+puts "📁 ドキュメントルート: #{File.join(Dir.pwd, 'src')}"
+puts "🌐 http://localhost:3000 にアクセスしてね！"
+puts "終了するには Ctrl+C を押してください"
 
-# サーバーの終了処理
 trap('INT') { server.shutdown }
 
-server.start 
+server.start

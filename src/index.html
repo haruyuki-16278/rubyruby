@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome</title>
-</head>
-<body>
-    <h1>ようこそ！</h1>
-    <p>これはRubyのWebサーバーで配信されているページです。</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ルビールビ</title>
+    <script src="https://cdn.jsdelivr.net/npm/@ruby/3.3-wasm-wasi@2.7.0/dist/browser.script.iife.js"></script>
+    <link href="props.css" rel="stylesheet" />
+    <link href="element.css" rel="stylesheet" />
+    <link href="classes.css" rel="stylesheet" />
+  </head>
+  <body class="page">
+    <h1>
+      <ruby>Ruby<rp>（</rp><rt>ルビ</rt><rp>）</rp></ruby>
+    </h1>
+    <label for="indexUserName"
+      >ユーザー名
+      <input type="text" placeholder="名前を入力してね" id="indexUserName" />
+    </label>
+    <button style="margin-top: 2em" id="indexStart">スタート</button>
+
+    <!-- Ruby.wasmのメインアプリケーションを読み込み -->
+    <script type="text/ruby" src="app.rb"></script>
+  </body>
 </html>

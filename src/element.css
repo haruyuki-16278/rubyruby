@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: 8em;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+input {
+  width: 75%;
+  padding: .5em 1em;
+  border-radius: .5em;
+  font-size: 1.5em;
+}
+
+label {
+  font-size: 1em;
+  color: gray;
+}
+
+input {
+  margin: 1em
+}
+
+button, a {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: .5em 1em;
+  border-radius: .5em;
+  font-size: 1.5em;
+  cursor: pointer;
+}
