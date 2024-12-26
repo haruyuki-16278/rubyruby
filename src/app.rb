@@ -5,30 +5,46 @@ class App
     # グローバルのdocumentオブジェクトを取得
     @document = JS.global[:document]
     @localStorage = JS.global[:localStorage]
+    @main = @document.querySelector('#main')
 
-    # 要素を取得
-    setup_elements
-    # イベントリスナーの設定
-    setup_listeners
+    # ページをセットアップ
+    setup_index_page
 
     puts "Ruby.wasm App initialized! (Ruby #{RUBY_VERSION})"
   end
 
   private
 
-  def self.setup_elements
-    @startButton = @document.querySelector('#indexStart')
-    @userNameInput = @document.querySelector('#indexUserName')
-    @userNameInput[:value] = @localStorage.getItem('userName')
-  end
+  def self.setup_index_page
+    @main[:innerHTML] = ''
 
-  def self.setup_listeners
-    return unless @startButton && @userNameInput
+    title = @document.createElement('h1')
+    titleRubyTarget = @document.createElement('ruby')
+    titleRubyTarget[:textContent] = 'Ruby'
+    titleRubyText = @document.createElement('rt')
+    titleRubyText[:textContent] = 'ルビ'
+    titleRubyTarget.appendChild(titleRubyText)
+    title.appendChild(titleRubyTarget)
+    @main.appendChild(title)
 
-    @startButton.addEventListener('click') do |event|
-      userName = @userNameInput[:value]
+    label = @document.createElement('label')
+    label[:textContent] = 'ユーザー名'
+    input = @document.createElement('input')
+    input[:type] = 'text'
+    input[:placeholder] = '名前を入力してね'
+    input[:id] = 'indexUserName'
+    input[:value] = @localStorage.getItem('userName')
+    label.appendChild(input)
+    @main.appendChild(label)
+
+    startButton = @document.createElement('button')
+    startButton[:textContent] = 'スタート'
+    startButton[:id] = 'indexStart'
+    startButton.addEventListener('click') do |event|
+      userName = input[:value]
       @localStorage.setItem('userName', userName)
     end
+    @main.appendChild(startButton)
   end
 end
 
